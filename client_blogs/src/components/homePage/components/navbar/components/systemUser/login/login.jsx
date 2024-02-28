@@ -12,31 +12,21 @@ const onFinishFailed = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
 
-const postInfo = (data) => {
-  console.log(data.username);
-  console.log(data.password);
-
-  axios({
-    method: "post",
-    url: "http://127.0.0.1:8000/login",
-    data: {
-      username: data.username,
-      passowrd: data.password,
-    },
-  })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-};
-
 function Login() {
   const [status, setStatus] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
+  const handleSubmit = async (data) => {
+    const response = await axios.post("http://127.0.0.1:8000/login", data, {
+      header: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    console.log(response);
+
+    localStorage.setItem("token", response.data.token);
+
     setStatus(true);
     setTimeout(() => {
       navigate("/");
@@ -61,12 +51,7 @@ function Login() {
           initialValues={{
             remember: true,
           }}
-          onFinish={
-            (data) => {
-              postInfo(data);
-            }
-            // handleSubmit
-          }
+          onFinish={handleSubmit}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >

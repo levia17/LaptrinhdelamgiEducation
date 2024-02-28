@@ -1,0 +1,17 @@
+.containerInfoUser {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  .name {
+    font-size: 0.7em;
+    color: #ffffff;
+  }
+  .btnLogout {
+    width: 30%;
+    height: 100%;
+    .active {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

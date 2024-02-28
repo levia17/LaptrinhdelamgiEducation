@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button, Form, Input, Space } from "antd";
 import { PasswordInput } from "antd-password-input-strength";
 import {  useNavigate } from "react-router-dom";
+import axios from 'axios';
 import clsx from "clsx";
 
 import style from "./register.module.scss";
@@ -32,7 +33,16 @@ function Register() {
   const [status, setStatus] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
+  const handleSubmit = async (data) => {
+
+    const response = await axios.post("http://127.0.0.1:8000/register", data, {
+      header: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    console.log(response);
+
     setStatus(true);
     setTimeout(()=>{
         navigate('/login')
@@ -57,7 +67,7 @@ function Register() {
           onFinish={handleSubmit}
         >
           <Form.Item
-            name="Username:"
+            name="username"
             label="Username:"
             rules={[
               {
@@ -68,7 +78,7 @@ function Register() {
             <Input />
           </Form.Item>
           <Form.Item
-            name="Password: "
+            name="password"
             label="Password: "
             rules={[
               {
@@ -97,7 +107,7 @@ function Register() {
               },
               ({ getFieldValue }) => ({
                 validator(_, value) {
-                  if (!value || getFieldValue('Password: ') === value) {
+                  if (!value || getFieldValue('password') === value) {
                     return Promise.resolve();
                   }
                   return Promise.reject(new Error('Wrong!'));
