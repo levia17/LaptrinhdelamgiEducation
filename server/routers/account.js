@@ -2,6 +2,21 @@ const express = require("express");
 const router = express.Router();
 const AccountModel = require("../models/account");
 
+// get a account
+router.get("/:id", (req, res, next) => {
+  const id = req.params.id;
+
+  AccountModel.findOne({
+    _id: id,
+  })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      res.status(500).json("loi server");
+    });
+});
+
 // get all account
 router.get("/", (req, res, next) => {
   AccountModel.find({})
