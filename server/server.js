@@ -7,6 +7,10 @@ const cors = require("cors");
 
 const AccountModel = require("./models/account");
 const accountRouter = require("./routers/account");
+
+const BlogsModel = require("./models/blogs");
+const blogsRouter = require("./routers/blogs");
+
 const port = 8000;
 
 // parse application/x-www-form-urlencoded
@@ -73,11 +77,12 @@ app.post("/login", (req, res, next) => {
     })
     .catch((err) => {
       res.status(500).json("co loi ben server !");
-      return; 
+      return;
     });
 });
 
 app.use("/api/account/", accountRouter); // cái này ko biết sao ko import được biến accountRouter
+app.use("/api/blogs", blogsRouter);
 
 app.get("/user", (req, res, next) => {
   AccountModel.find({})

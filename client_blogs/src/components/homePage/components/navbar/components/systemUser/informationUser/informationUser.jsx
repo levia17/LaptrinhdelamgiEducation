@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 
 import style from "./informationUser.module.scss";
 
+import AvatarUser from "./avatar/avatar";
+
 function InformationUser(info) {
   const [user, setUser] = useState();
   const decodeToken = jwtDecode(info.idUser);
@@ -26,6 +28,7 @@ function InformationUser(info) {
     <>
       {user ? (
         <div className={clsx(style.containerInfoUser, "d-flex-c")}>
+          <AvatarUser />
           <p className={style.name}>{user.username}</p>
           <button className={style.btnLogout} onClick={handleLogout}>
             Logout

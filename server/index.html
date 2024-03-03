@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js"
+      integrity="sha512-NQfB/bDaB8kaSXF8E77JjhHG5PM6XVRxvHzkZiwl3ddWCEPBa23T76MuWSwAJdMGJnmQqM0VeY9kFszsrBEFrQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <title>Test JWT</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    Username: <input id="username" type="text" /> Password:
+    <input id="password" type="text" /> <button id="button">LOGIN</button>
+
+    <script>
+      const button = document.querySelector("#button");
+      const username = document.getElementById("username");
+      const password = document.getElementById("password");
+
+      button.addEventListener("click", () => {
+        login();
+      });
+
+      function login() {
+        // Send a POST request
+        axios
+          .post("/login", {
+            username: username.value,
+            password: password.value,
+          })
+          .then(function (response) {
+            localStorage.setItem("token", response.data.token);
+          })
+          .catch(function (error) {
+            console.log("DANG NHAP THAT BAI!");
+          });
+      }
+    </script>
+  </body>
+</html>

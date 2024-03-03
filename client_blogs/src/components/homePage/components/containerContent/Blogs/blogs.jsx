@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { Link } from "react-router-dom";
 
 import style from "./blogs.module.scss";
 
@@ -7,7 +8,9 @@ import Blog from "./blog/blog";
 function Blogs() {
   return (
     <div className={style.sectionBlogs}>
-      <p className={clsx(style.text)}>Blogs </p>
+      <p className={clsx(style.text)}>
+        <Link to={"/blogsPage"}>Blogs</Link>
+      </p>
       <div className={clsx(style.containerBlogs)}>
         <Blog
           bgPath={
