@@ -9,6 +9,9 @@ const AccountSchema = new Schema(
   {
     username: String,
     password: String,
+    createAt: String,
+    avatar: String,
+    role: String,
   },
   {
     collection: "account",

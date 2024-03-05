@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const BlogsModel = require("../models/blogs");
 
-
 // Admin
 router.get("/", (req, res, next) => {
   BlogsModel.find({})
@@ -14,11 +13,15 @@ router.post("/", (req, res, next) => {
   const blogID = req.body.blogID;
   const author = req.body.author;
   const thumb = req.body.thumb;
+  const title = req.body.title;
+  const createAt = new Date();
 
   BlogsModel.create({
     blogID: blogID,
     author: author,
-    thumb: thumb,
+    thumb: thumb || "https://laptrinhdelamgi.edu.vn/img/logo_big.0401b0f1.png",
+    title: title,
+    createAt: createAt,
   })
     .then((data) => res.json(data))
     .catch((err) => res.json(err));
@@ -44,11 +47,5 @@ router.delete("/:id", (req, res) => {
     .then((data) => res.json("Da xoa bai viet"))
     .catch((err) => res.json("Loi!"));
 });
-
-
-
-
-
-
 
 module.exports = router;

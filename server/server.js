@@ -29,6 +29,8 @@ app.use(cors(corsOptions));
 app.post("/register", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+  const createAt = new Date();
+  const avatar = req.body.avatar;
 
   AccountModel.findOne({
     username: username,
@@ -40,6 +42,11 @@ app.post("/register", (req, res, next) => {
         return AccountModel.create({
           username: username,
           password: password,
+          createAt: createAt,
+          role: "member",
+          avatar:
+            avatar ||
+            "https://cdn.pixabay.com/photo/2021/03/02/17/26/pixel-6063246_1280.png",
         }).then((data) => {
           res.json("tao tai khoan thanh cong !");
         });

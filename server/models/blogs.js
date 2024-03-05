@@ -9,6 +9,9 @@ const BlogsSchema = new Schema(
     thumb: String,
     blogID: Number,
     author: String,
+    title: String,
+    content: String,
+    createAt: String,
   },
   {
     collection: "blogs",
