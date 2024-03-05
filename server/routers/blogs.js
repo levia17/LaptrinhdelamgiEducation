@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const BlogsModel = require("../models/blogs");
+<<<<<<< HEAD
+=======
+const { create } = require("../models/account");
+>>>>>>> master
 
 // Admin
 router.get("/", (req, res, next) => {
@@ -11,13 +15,19 @@ router.get("/", (req, res, next) => {
 
 router.post("/", (req, res, next) => {
   const blogID = req.body.blogID;
-  const author = req.body.author;
-  const thumb = req.body.thumb;
+  const authorUsername = req.body.authorUsername;
+  const authorAvatar = req.body.authorAvatar;
+  const thumbnail = req.body.thumbnail;
+  const title = req.body.title;
+  const createAt = new Date();
 
   BlogsModel.create({
     blogID: blogID,
-    author: author,
-    thumb: thumb,
+    authorUsername: authorUsername,
+    authorAvatar: authorAvatar,
+    title: title,
+    thumbnail: thumbnail,
+    createAt: createAt,
   })
     .then((data) => res.json(data))
     .catch((err) => res.json(err));

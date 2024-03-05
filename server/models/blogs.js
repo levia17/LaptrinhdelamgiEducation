@@ -6,9 +6,12 @@ const Schema = mongoose.Schema;
 
 const BlogsSchema = new Schema(
   {
-    thumb: String,
+    thumbnail: String,
     blogID: Number,
-    author: String,
+    authorUsername: String,
+    authorAvatar: String,
+    title: String,
+    createAt: String,
   },
   {
     collection: "blogs",

@@ -32,6 +32,8 @@ router.get("/", (req, res, next) => {
 router.post("/", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+  const nickname = req.body.nickname;
+  const avatar = req.body.avatar;
 
   AccountModel.findOne({
     username: username,
@@ -43,6 +45,10 @@ router.post("/", (req, res, next) => {
         return AccountModel.create({
           username: username,
           password: password,
+          nickname: nickname || username,
+          avatar:
+            avatar ||
+            "https://cdn.pixabay.com/photo/2021/03/02/17/26/pixel-6063246_1280.png",
         }).then((data) => res.json("Successful add new account!"));
       }
     })
