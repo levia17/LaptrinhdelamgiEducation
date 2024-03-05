@@ -1,10 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const BlogsModel = require("../models/blogs");
-<<<<<<< HEAD
-=======
-const { create } = require("../models/account");
->>>>>>> master
 
 // Admin
 router.get("/", (req, res, next) => {
